@@ -1,0 +1,180 @@
+body{
+    font-family: 'Microsoft YaHei', sans-serif;
+    /*background-color: ivory;*/
+    background-color:#fff;
+    overflow-y:scroll;
+}
+
+.mai-icon{
+    background: rgb(64, 210, 177);
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 20px;
+}
+
+/*导航*/
+.navbar-default{
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);
+}
+.navbar-default .navbar-brand {
+    font-size: 30px;
+    font-weight: bold;
+    color: #40D2B1;
+    height: 70px;
+    line-height: 35px;
+    /*
+    background: #1ab3A4;
+    color: #fff;*/
+}
+.navbar-default .navbar-nav>li>a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    height: 70px;
+    line-height: 35px;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    background-color: lightgreen;
+    font-weight: bold;
+}
+
+.navbar-toggle{
+    margin-top: 17px;
+}
+.navbar-default .navbar-toggle:hover {
+    border-color: #40D2B1;
+    background-color: rgb(69, 210, 184);
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #1C9982;
+}
+
+
+
+/* 通栏广告轮播 */
+#main_ad {margin-top: 70px;}
+
+#main_ad > .carousel-inner > .item {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* 当屏幕宽度大于768时，将元素高度设置为410px */
+@media (min-width: 768px) {
+  #main_ad > .carousel-inner > .item {
+    height: 410px;
+  }
+}
+#main_ad > .carousel-inner > .item > img {
+  width: 100%;
+}
+ 
+
+
+/* 网站特色 */ 
+#tese {
+  padding: 50px 0;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.icon-uniE907:before {
+  content: "\e907";
+}
+
+#tese i {
+  font-size: 34px;
+}
+
+#tese > .container > .row > div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#tese > .container > .row > div > a {
+  color: #888;
+}
+
+#tese > .container > .row > div > a:hover {
+  color: #666;
+  text-decoration: none;
+}
+
+
+/*footer*/
+footer{
+    font-weight: 400;
+    text-align: center;
+    padding:5px ;
+    background-color: #eee;
+}
+
+ 
+
+/*page-header*/
+.page-header{
+    margin-top: 10px;
+}
+.page-header h1{
+    margin: 0;
+    font-size: 16px;
+}
+
+.breadcrumb {
+	margin-bottom: 5px;	
+}
+
+.btn-primary {
+    background-color: #1ab394;
+    border-color: #1ab394;
+    color: #FFFFFF;
+}
+
+/*边距*/
+.mar_t15{
+    margin-top: 15px;
+}
+
+.bottom15 {
+	margin-bottom: 15px; 
+}
+.bottom5 {
+	margin-bottom: 5px;
+}
+
+.top5 {
+	margin-top: 5px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.showFields {
+	padding: 5px;
+	font-family:"微软雅黑";
+	font-size: 14px;
+	/*color: #888;*/
+	background-color: ivory;
+}
+
+.field {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+
+ 
+ 
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.LeavewordMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加留言记录 -->
+	<insert id="addLeaveword" parameterType="leaveword">
+		insert into t_leaveword(leaveTitle,leaveContent,userObj,leaveTime,replyContent,replyTime) values 
+		(#{leaveTitle},#{leaveContent},#{userObj.user_name},#{leaveTime},#{replyContent},#{replyTime})
+	</insert>
+
+	<!-- 按照查询条件分页查询留言记录 -->
+	<select id="queryLeaveword" resultMap="leavewordMap" >
+		select t_leaveword.* from t_leaveword,t_userInfo ${where} and t_leaveword.userObj = t_userInfo.user_name limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="leavewordMap" type="leaveword">
+        <id property="leaveWordId" column="leaveWordId" />
+        <association property="userObj" column="userObj" select="com.chengxusheji.mapper.UserInfoMapper.getUserInfo" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有留言记录 -->
+	<select id="queryLeavewordList" resultMap="leavewordMap" >
+		select t_leaveword.* from t_leaveword,t_userInfo ${where} and t_leaveword.userObj = t_userInfo.user_name
+	</select>
+
+    <!-- 按照查询条件的留言记录数 -->
+	<select id="queryLeavewordCount" resultType="int">
+		select count(*) from t_leaveword,t_userInfo ${where} and t_leaveword.userObj = t_userInfo.user_name
+	</select>
+
+	<!-- 根据主键查询某个留言记录 -->
+	<select id="getLeaveword" parameterType="int" resultMap="leavewordMap">
+		select * from t_leaveword where t_leaveword.leaveWordId = #{leaveWordId}
+	</select>
+
+	<!-- 更新留言记录 -->
+	<update id="updateLeaveword" parameterType="leaveword">
+		update t_leaveword set leaveTitle=#{leaveTitle},leaveContent=#{leaveContent},userObj=#{userObj.user_name},leaveTime=#{leaveTime},replyContent=#{replyContent},replyTime=#{replyTime} where leaveWordId = #{leaveWordId}
+	</update>
+
+	<!-- 删除留言记录 -->
+	<delete id="deleteLeaveword" parameterType="int">
+		delete from t_leaveword where leaveWordId=#{leaveWordId}
+	</delete>
+
+</mapper>

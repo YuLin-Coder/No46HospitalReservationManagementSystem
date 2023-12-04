@@ -1,0 +1,3 @@
+spring：4.0
+mybatis：3.4.1
+mybatis与spring整合包：mybatis-spring-1.3.0

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->  
+<mapper namespace="com.chengxusheji.mapper.AdminMapper">  
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象  
+mapper.xml以statement为单位管理sql语句  
+ -->  
+   <!-- 查询管理员账号是否存在 -->
+   <select id="findAdminByUserName" parameterType="String" resultType="Admin">
+      select * from admin where username=#{username}
+   </select>
+   
+   <update id="changePassword" parameterType="admin">
+      update admin set password=#{password} where username=#{username}
+   </update>
+ 
+</mapper>
+ 

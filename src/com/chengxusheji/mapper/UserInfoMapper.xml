@@ -1,0 +1,48 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.UserInfoMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加用户记录 -->
+	<insert id="addUserInfo" parameterType="userInfo">
+		insert into t_userInfo(user_name,password,name,gender,birthDate,userPhoto,telephone,email,address,regTime) values 
+		(#{user_name},#{password},#{name},#{gender},#{birthDate},#{userPhoto},#{telephone},#{email},#{address},#{regTime})
+	</insert>
+
+	<!-- 按照查询条件分页查询用户记录 -->
+	<select id="queryUserInfo" resultMap="userInfoMap" >
+		select t_userInfo.* from t_userInfo ${where} limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="userInfoMap" type="userInfo">
+        <id property="user_name" column="user_name" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有用户记录 -->
+	<select id="queryUserInfoList" resultMap="userInfoMap" >
+		select t_userInfo.* from t_userInfo ${where}
+	</select>
+
+    <!-- 按照查询条件的用户记录数 -->
+	<select id="queryUserInfoCount" resultType="int">
+		select count(*) from t_userInfo ${where}
+	</select>
+
+	<!-- 根据主键查询某个用户记录 -->
+	<select id="getUserInfo" parameterType="string" resultMap="userInfoMap">
+		select * from t_userInfo where t_userInfo.user_name = #{user_name}
+	</select>
+
+	<!-- 更新用户记录 -->
+	<update id="updateUserInfo" parameterType="userInfo">
+		update t_userInfo set password=#{password},name=#{name},gender=#{gender},birthDate=#{birthDate},userPhoto=#{userPhoto},telephone=#{telephone},email=#{email},address=#{address},regTime=#{regTime} where user_name = #{user_name}
+	</update>
+
+	<!-- 删除用户记录 -->
+	<delete id="deleteUserInfo" parameterType="string">
+		delete from t_userInfo where user_name=#{user_name}
+	</delete>
+
+</mapper>

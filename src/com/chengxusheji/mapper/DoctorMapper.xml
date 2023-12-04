@@ -1,0 +1,49 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.DoctorMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加医生信息记录 -->
+	<insert id="addDoctor" parameterType="doctor">
+		insert into t_doctor(doctorNumber,password,departmentObj,doctorName,sex,doctorPhoto,birthDate,position,experience,contactWay,goodAt,doctorDesc) values 
+		(#{doctorNumber},#{password},#{departmentObj.departmentId},#{doctorName},#{sex},#{doctorPhoto},#{birthDate},#{position},#{experience},#{contactWay},#{goodAt},#{doctorDesc})
+	</insert>
+
+	<!-- 按照查询条件分页查询医生信息记录 -->
+	<select id="queryDoctor" resultMap="doctorMap" >
+		select t_doctor.* from t_doctor,t_department ${where} and t_doctor.departmentObj = t_department.departmentId limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="doctorMap" type="doctor">
+        <id property="doctorNumber" column="doctorNumber" />
+        <association property="departmentObj" column="departmentObj" select="com.chengxusheji.mapper.DepartmentMapper.getDepartment" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有医生信息记录 -->
+	<select id="queryDoctorList" resultMap="doctorMap" >
+		select t_doctor.* from t_doctor,t_department ${where} and t_doctor.departmentObj = t_department.departmentId
+	</select>
+
+    <!-- 按照查询条件的医生信息记录数 -->
+	<select id="queryDoctorCount" resultType="int">
+		select count(*) from t_doctor,t_department ${where} and t_doctor.departmentObj = t_department.departmentId
+	</select>
+
+	<!-- 根据主键查询某个医生信息记录 -->
+	<select id="getDoctor" parameterType="string" resultMap="doctorMap">
+		select * from t_doctor where t_doctor.doctorNumber = #{doctorNumber}
+	</select>
+
+	<!-- 更新医生信息记录 -->
+	<update id="updateDoctor" parameterType="doctor">
+		update t_doctor set password=#{password},departmentObj=#{departmentObj.departmentId},doctorName=#{doctorName},sex=#{sex},doctorPhoto=#{doctorPhoto},birthDate=#{birthDate},position=#{position},experience=#{experience},contactWay=#{contactWay},goodAt=#{goodAt},doctorDesc=#{doctorDesc} where doctorNumber = #{doctorNumber}
+	</update>
+
+	<!-- 删除医生信息记录 -->
+	<delete id="deleteDoctor" parameterType="string">
+		delete from t_doctor where doctorNumber=#{doctorNumber}
+	</delete>
+
+</mapper>

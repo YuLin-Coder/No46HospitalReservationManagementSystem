@@ -1,0 +1,46 @@
+.logo {
+	margin-left: 5px;
+	width:380px;
+	height:50px;
+	line-height:50px;
+	text-align:left;
+	font-size:20px;
+	font-weight:bold;
+	float:left;
+	color:#fff;
+}
+.logout {
+	float:right;
+	padding:30px 15px 0 0;
+	color:#fff;
+}
+.dialog-button {
+	text-align:center;
+}
+.textbox {
+	height:22px;
+	padding:0 2px;
+}
+a {
+	color:#fff;
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+
+#nav {
+	height: 100%;
+}
+
+.tree-title {
+    font-size: 14px;
+}
+
+.panel-title {
+    font-size: 14px;
+}
+
+.tabs-title {
+    font-size: 14px;
+}

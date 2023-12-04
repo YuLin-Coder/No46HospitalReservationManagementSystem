@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+	
+	<context:component-scan base-package="com.chengxusheji.controller"/>
+	 
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	
+	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <!-- 设置上传文件的最大尺寸为2MB -->  
+    	<property name="maxUploadSize">  
+        	<value>2097152</value>
+        </property>  
+	</bean>  
+	
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->  
+    <!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->  
+    <bean id="exceptionResolver"  
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+        <property name="exceptionMappings">  
+            <props>  
+                <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->  
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">upload_error</prop>  
+                
+                <prop key="com.chengxusheji.utils.UserException">user_error</prop>
+            </props>  
+        </property>  
+    </bean>  
+    
+    
+    
+    <!-- 国际化配置 
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    	<property name="basenames">
+    		<list>
+    			<value>classpath:resource/ValidationMessages</value>
+    		</list>
+    	</property>
+    	<property name="useCodeAsDefaultMessage" value="true" />
+    </bean>-->    
+    
+    <!-- 注册验证器 -->
+    <mvc:annotation-driven validator="validator" />
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    	<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+    	<!--这里配置将使用上面国际化配置的messageSource
+    	<property name="validationMessageSource" ref="messageSource" />
+    	 -->
+    </bean>
+
+ 
+
+</beans>

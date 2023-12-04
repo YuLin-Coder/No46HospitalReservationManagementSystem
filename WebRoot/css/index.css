@@ -1,0 +1,174 @@
+body{
+	background-image:url(../images/bg.jpg);
+	background-repeat: repeat;
+	margin:1px 0px 0px 0px;
+	padding:0px;
+	text-align:center;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#container{
+	position:relative;
+	margin:0px auto 0px auto;
+	width: 1000px;
+	text-align:left;
+}
+
+#banner img {
+	width: 100%;
+	height:100px;
+}
+
+#globallink{
+	margin:0px; padding:0px;
+	width:100%;
+	align:center;
+}
+#globallink ul{
+    list-style:none;
+	padding:0px;
+	margin:0px 0px 0px 3px;  
+}
+#globallink li{ 
+	text-align:center;
+	float:left;  
+	/*width:127px;*/
+	width: 12.5%;
+	padding:0px; 
+	margin:0px;
+	font-size: 14px;
+}
+
+#globallink a{   
+	display:block;
+	border-left: 1px dashed blue;
+	border-right: 1px dashed blue;
+	padding:5px 5px 5px 0px;
+	/*
+	background:url('http://localhost:8080/CarSellSystem/images/button1.jpg') repeat-x;
+	*/
+	margin:0px;
+}
+#globallink a:link, #globallink a:visited{
+	color:#630002;
+	text-decoration:none;
+}
+#globallink a:hover{
+	color:#FFFFFF;
+	text-decoration:underline;
+	/*
+	background:url('http://localhost:8080/CarSellSystem/images/button1_bg.jpg')  repeat-x;
+	  替换背景图片 */
+	background-color:green;
+}
+ 
+
+
+#loginBar{
+	margin:0px;  
+	padding:0px 0px 3px 0px;
+	width:100%;
+	float:left;
+	text-align:right;
+	line-height:18px;
+	height:25px;
+	color:red;
+	background: lightgreen; 
+	display: none;
+}
+
+#loginBar ul{
+    list-style:none;
+	padding:0px; 
+	margin:5px 0px 0px 3px;
+	float:right;
+}
+#loginBar li{ 
+	text-align:center; 
+	float:left;
+	width: 100px;
+	padding:0px; 
+	margin:0px;  
+}
+
+
+
+
+#main{
+	float:left;
+	width:100%;
+	height:600px;
+	margin:1px 0px 0px 2px; 
+}
+ 
+ 
+ #footer{
+	background-color:#FFFFFF;
+	margin:1px 0px 0px 0px;
+	clear:both;
+	width:100%;
+	position:relative;
+	padding:1px 0px 1px 0px;
+}
+
+#footer p{
+	text-align:center;
+	padding:0px;
+	margin:4px 5px 4px 5px;
+	background-color:#5ea6eb;
+}
+#footer p a{
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+/*下面是树形菜单的样式*/
+.branch {
+ DISPLAY: block; 
+ CURSOR: hand
+ 
+}
+
+.leaf {
+ DISPLAY: none;
+  MARGIN-LEFT: 16px;
+}
+ 
+A:hover {
+ TEXT-DECORATION: underline
+}
+A:link, A:visited{
+	color:#ff00ff;
+	text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

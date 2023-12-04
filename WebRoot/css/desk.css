@@ -1,0 +1,43 @@
+Html {
+	BackGround: #F8F8FF;
+	Height: 100%
+}
+Body {
+    SCROLLBAR-FACE-COLOR: #ececec; 
+    SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+    SCROLLBAR-SHADOW-COLOR: #775656; 
+    SCROLLBAR-3DLIGHT-COLOR: #cccccc; 
+    SCROLLBAR-ARROW-COLOR: #775656; 
+    SCROLLBAR-TRACK-COLOR: #cccccc; 
+    SCROLLBAR-DARKSHADOW-COLOR: #cccccc
+	Border-Top-Width: 0px; 
+	Padding-Right: 0px; 
+	Padding-Left: 0px; 
+	Border-Left-Width: 0px;
+	Border-Bottom-Width: 0px; 
+	Padding-Bottom: 0px; 
+	Margin: 0px;  
+	Color: buttontext;
+	Padding-TOP: 0px; 
+	Border-Right-Width: 0px;
+	Line-Height: 18px;
+	Font-Family: "Arial", "ËÎÌו"
+}
+ 
+Table{  
+	Word-Break:break-all;
+	Border-Collapse: collapse;
+}
+Td {  
+	Font-Size: 12px;
+}
+A {  
+	Color: #0066CC; 
+	Text-Decoration: none;
+}
+
+A:Hover {  
+	Color: #0000FF; 
+	Text-Decoration: none;
+}
+ 

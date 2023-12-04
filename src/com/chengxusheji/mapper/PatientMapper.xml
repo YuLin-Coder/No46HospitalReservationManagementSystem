@@ -1,0 +1,49 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.PatientMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加病人信息记录 -->
+	<insert id="addPatient" parameterType="patient">
+		insert into t_patient(doctorObj,patientName,sex,cardNumber,telephone,illnessCase,addTime) values 
+		(#{doctorObj.doctorNumber},#{patientName},#{sex},#{cardNumber},#{telephone},#{illnessCase},#{addTime})
+	</insert>
+
+	<!-- 按照查询条件分页查询病人信息记录 -->
+	<select id="queryPatient" resultMap="patientMap" >
+		select t_patient.* from t_patient,t_doctor ${where} and t_patient.doctorObj = t_doctor.doctorNumber limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="patientMap" type="patient">
+        <id property="patientId" column="patientId" />
+        <association property="doctorObj" column="doctorObj" select="com.chengxusheji.mapper.DoctorMapper.getDoctor" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有病人信息记录 -->
+	<select id="queryPatientList" resultMap="patientMap" >
+		select t_patient.* from t_patient,t_doctor ${where} and t_patient.doctorObj = t_doctor.doctorNumber
+	</select>
+
+    <!-- 按照查询条件的病人信息记录数 -->
+	<select id="queryPatientCount" resultType="int">
+		select count(*) from t_patient,t_doctor ${where} and t_patient.doctorObj = t_doctor.doctorNumber
+	</select>
+
+	<!-- 根据主键查询某个病人信息记录 -->
+	<select id="getPatient" parameterType="int" resultMap="patientMap">
+		select * from t_patient where t_patient.patientId = #{patientId}
+	</select>
+
+	<!-- 更新病人信息记录 -->
+	<update id="updatePatient" parameterType="patient">
+		update t_patient set doctorObj=#{doctorObj.doctorNumber},patientName=#{patientName},sex=#{sex},cardNumber=#{cardNumber},telephone=#{telephone},illnessCase=#{illnessCase},addTime=#{addTime} where patientId = #{patientId}
+	</update>
+
+	<!-- 删除病人信息记录 -->
+	<delete id="deletePatient" parameterType="int">
+		delete from t_patient where patientId=#{patientId}
+	</delete>
+
+</mapper>

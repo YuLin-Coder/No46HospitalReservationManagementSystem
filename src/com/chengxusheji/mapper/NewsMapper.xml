@@ -1,0 +1,48 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.NewsMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加新闻信息记录 -->
+	<insert id="addNews" parameterType="news">
+		insert into t_news(newsTitle,newsPhoto,newsContent,newsDate,newsFrom) values 
+		(#{newsTitle},#{newsPhoto},#{newsContent},#{newsDate},#{newsFrom})
+	</insert>
+
+	<!-- 按照查询条件分页查询新闻信息记录 -->
+	<select id="queryNews" resultMap="newsMap" >
+		select t_news.* from t_news ${where} limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="newsMap" type="news">
+        <id property="newsId" column="newsId" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有新闻信息记录 -->
+	<select id="queryNewsList" resultMap="newsMap" >
+		select t_news.* from t_news ${where}
+	</select>
+
+    <!-- 按照查询条件的新闻信息记录数 -->
+	<select id="queryNewsCount" resultType="int">
+		select count(*) from t_news ${where}
+	</select>
+
+	<!-- 根据主键查询某个新闻信息记录 -->
+	<select id="getNews" parameterType="int" resultMap="newsMap">
+		select * from t_news where t_news.newsId = #{newsId}
+	</select>
+
+	<!-- 更新新闻信息记录 -->
+	<update id="updateNews" parameterType="news">
+		update t_news set newsTitle=#{newsTitle},newsPhoto=#{newsPhoto},newsContent=#{newsContent},newsDate=#{newsDate},newsFrom=#{newsFrom} where newsId = #{newsId}
+	</update>
+
+	<!-- 删除新闻信息记录 -->
+	<delete id="deleteNews" parameterType="int">
+		delete from t_news where newsId=#{newsId}
+	</delete>
+
+</mapper>

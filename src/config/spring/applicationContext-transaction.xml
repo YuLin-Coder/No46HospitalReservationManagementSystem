@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+
+<!-- 事务管理器 
+    对mybatis操作数据库事务控制，spring使用jdbc的事务控制类
+-->  
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <!-- dataSource在applicationContext-dao.xml中配置了 -->
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+<!-- 以前的方法是这样管理事务的：使用基于注解方式配置事务
+<tx:annotation-driven transaction-manager="transactionManager"/> 
+-->
+
+<!-- 现在使用通知的方式管理 -->
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+    	<!-- 传播行为  -->
+        <tx:method name="save*" propagation="REQUIRED"/>
+        <tx:method name="delete*" propagation="REQUIRED"/>
+        <tx:method name="insert*" propagation="REQUIRED"/>
+        <tx:method name="update*" propagation="REQUIRED"/>
+        <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+        <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
+        <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+        <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+    </tx:attributes>
+</tx:advice>
+<!-- 要扫描的service包 aop   --> 
+<aop:config>
+    <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.chengxusheji.service.*.*(..))"/>
+</aop:config>
+
+</beans>

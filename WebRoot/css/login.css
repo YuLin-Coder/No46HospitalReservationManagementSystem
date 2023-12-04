@@ -1,0 +1,19 @@
+body{background-color:#01B1EA;}
+#login {
+	padding:6px 0 0 0;
+}
+p {
+	height:22px;
+	line-height:22px;
+	padding:4px 0 0 25px;
+}
+.textbox {
+	height:22px;
+	padding:0 2px;
+}
+#btn {
+	text-align:center;
+}
+.easyui-linkbutton {
+	padding:0 10px;
+}

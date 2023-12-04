@@ -1,0 +1,84 @@
+#leavewordAddDiv{ 
+	height: auto;
+	width: 100%;
+	background-color:#F8F8FF;
+	margin-top:2px;
+}
+
+#leavewordAddForm {
+	padding:6px 0 0 0;
+	margin:0;
+	padding:5px 0 0 25px;
+	color:#333;
+}
+
+form div {
+	margin-top:15px;
+	display: block;
+	position: relative;
+}
+
+.edui-editor div {
+	margin-top: 0px;
+}
+span.label {
+	position:absolute;
+	left: 20px;
+	font-size: 14px;
+	text-align:right;
+	width: 120px;
+}
+span.inputControl{
+	position:relative;
+	left: 200px;
+	font-size: 14px;
+}
+
+div.operation {
+	position:relative;
+	left: 150px;
+	width:500px;
+}
+
+.textbox {
+	height:22px;
+	padding:0 2px;
+}
+
+.operation > .easyui-linkbutton {
+	padding:0 10px;
+	text-align:center;
+	margin-right: 20px;
+}
+
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+	padding: 2px;
+	text-align: center;
+	font-size: 12px;
+}
+.datagrid-header .datagrid-cell span {
+	font-size: 13px;
+}
+.datagrid-cell {
+	padding: 0px;
+	text-align: center; 
+	font-size: 13px;
+}
+.datagrid-btable tr{height: 40px;}
+
+#leavewordEditDiv{
+	height: 98%;
+	width: 100%;
+	background-color:#F8F8FF; 
+	margin-top:2px;
+}
+#leavewordEditForm {
+	padding:6px 0 0 0;
+	margin:0;
+	padding:5px 0 0 25px;
+	color:#333;
+}
+#leaveword_manage_tool>.easyui-linkbutton {
+	text-align:center;
+	margin: 0px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.DepartmentMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加科室信息记录 -->
+	<insert id="addDepartment" parameterType="department">
+		insert into t_department(departmentName,departmentDesc,birthDate,chargeMan) values 
+		(#{departmentName},#{departmentDesc},#{birthDate},#{chargeMan})
+	</insert>
+
+	<!-- 按照查询条件分页查询科室信息记录 -->
+	<select id="queryDepartment" resultMap="departmentMap" >
+		select t_department.* from t_department ${where} limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="departmentMap" type="department">
+        <id property="departmentId" column="departmentId" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有科室信息记录 -->
+	<select id="queryDepartmentList" resultMap="departmentMap" >
+		select t_department.* from t_department ${where}
+	</select>
+
+    <!-- 按照查询条件的科室信息记录数 -->
+	<select id="queryDepartmentCount" resultType="int">
+		select count(*) from t_department ${where}
+	</select>
+
+	<!-- 根据主键查询某个科室信息记录 -->
+	<select id="getDepartment" parameterType="int" resultMap="departmentMap">
+		select * from t_department where t_department.departmentId = #{departmentId}
+	</select>
+
+	<!-- 更新科室信息记录 -->
+	<update id="updateDepartment" parameterType="department">
+		update t_department set departmentName=#{departmentName},departmentDesc=#{departmentDesc},birthDate=#{birthDate},chargeMan=#{chargeMan} where departmentId = #{departmentId}
+	</update>
+
+	<!-- 删除科室信息记录 -->
+	<delete id="deleteDepartment" parameterType="int">
+		delete from t_department where departmentId=#{departmentId}
+	</delete>
+
+</mapper>
